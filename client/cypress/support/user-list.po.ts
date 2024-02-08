@@ -42,7 +42,7 @@ export class UserListPage {
   /**
    * Get all the `.user-list-item` DOM elements. This will
    * be empty if we're using the card view of the users.
-   *
+   *age filter
    * @returns an iterable (`Cypress.Chainable`) containing all
    *   the `.user-list-item` DOM elements.
    */
