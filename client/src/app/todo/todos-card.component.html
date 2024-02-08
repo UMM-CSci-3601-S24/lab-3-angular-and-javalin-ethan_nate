@@ -1,0 +1,23 @@
+@if (this.todos) {
+  <mat-card appearance="outlined" class="todos-card">
+    <mat-card-header>
+      @if (this.todos.avatar) {
+        <img mat-card-avatar [src]="this.todos.avatar" alt="Avatar for {{this.todos.name}}" class="todos-avatar">
+      }
+      <mat-card-title class="todos-card-name">{{ this.todos.name }}</mat-card-title>
+      <mat-card-subtitle class="todos-card-company">{{ this.todos.company }}</mat-card-subtitle>
+    </mat-card-header>
+    @if (!this.simple) {
+      <mat-card-content>
+        <p>Role: <span class="todos-card-role">{{ this.todos.role }}</span></p>
+        <p>Age: <span class="todos-card-age">{{ this.todos.age }}</span></p>
+        <p>Email: <a href="mailto:{{this.todos.email}}" class="todos-card-email">{{this.todos.email}}</a></p>
+      </mat-card-content>
+    }
+    @if (this.simple) {
+      <mat-card-actions>
+        <button mat-button data-test="viewProfileButton" [routerLink]="['/todoss', this.todos._id]">View Profile</button>
+      </mat-card-actions>
+    }
+</mat-card>
+}

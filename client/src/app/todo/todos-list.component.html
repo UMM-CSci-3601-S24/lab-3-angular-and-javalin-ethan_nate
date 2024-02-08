@@ -1,0 +1,115 @@
+<div class="flex-row">
+  <div class="flex-1" fxFlex.gt-sm="80" fxFlexOffset.gt-sm="10">
+
+    <mat-card appearance="outlined" class="search-card">
+      <mat-card-title class="todos-list-title">Todoss</mat-card-title>
+      <mat-card-content class="flex-col" >
+
+        <div class="flex-row gap-10 flex-wrap">
+          <!-- Examples of filtering in Angular -->
+
+          <mat-form-field class="input-field">
+            <mat-label>Name</mat-label>
+            <input matInput data-test="todosNameInput" placeholder="Filter by name"
+              [(ngModel)]="todosName" (input)="updateFilter()">
+            <mat-hint>Filtered on client</mat-hint>
+          </mat-form-field>
+
+          <mat-form-field class="input-field">
+            <mat-label>Company</mat-label>
+            <input matInput data-test="todosCompanyInput" placeholder="Filter by company"
+              [(ngModel)]="todosCompany" (input)="updateFilter()">
+            <mat-hint>Filtered on client</mat-hint>
+          </mat-form-field>
+        </div>
+
+        <div class="flex-row gap-10 flex-wrap">
+          <!-- Examples of filtering on the server -->
+
+          <mat-form-field class="input-field">
+            <mat-label>Age</mat-label>
+            <input matInput data-test="todosAgeInput" type="number" placeholder="Filter by age"
+              min="0" max="200" [(ngModel)]="todosAge" (input)="getTodossFromServer()">
+            <mat-hint>Filtered on server</mat-hint>
+          </mat-form-field>
+
+          <mat-form-field class="input-field">
+            <mat-label>Role</mat-label>
+            <mat-select (selectionChange)="getTodossFromServer()" [(ngModel)]="todosRole" data-test="todosRoleSelect">
+              <mat-option>--</mat-option>
+              <mat-option value="admin">Admin</mat-option>
+              <mat-option value="editor">Editor</mat-option>
+              <mat-option value="viewer">Viewer</mat-option>
+            </mat-select>
+            <mat-hint>Filtered on server</mat-hint>
+          </mat-form-field>
+        </div>
+
+        <br>
+          <div class="flex-row gap-10 flex-wrap">
+            <label for="viewType">View type: </label>
+            <mat-radio-group aria-label="View type" [(ngModel)]="viewType" data-test="viewTypeRadio">
+              <mat-radio-button value="card">Card</mat-radio-button>
+              <mat-radio-button value="list">List</mat-radio-button>
+            </mat-radio-group>
+          </div>
+
+        </mat-card-content>
+      </mat-card>
+    </div>
+  </div>
+
+  <div class="flex-row">
+    @if (serverFilteredTodoss) {
+      <div class="flex-1" fxFlex.gt-sm="80" fxFlexOffset.gt-sm="10" >
+        <!-- Switch between card and list view based on the viewType variable, set above in the mar-radio-group -->
+        <div>
+          @switch (viewType) {
+            <!-- Card grid view -->
+            @case ('card') {
+              <div class="todos-cards-container flex-row gap-10 flex-wrap">
+                @for (todos of filteredTodoss; track todos._id) {
+                  <app-todos-card [simple]="true" class="todos-card" [todos]="todos" fxFlex="1 1 280px"></app-todos-card>
+                }
+              </div>
+            }
+            <!-- List view -->
+            @case ('list') {
+              <mat-card appearance="outlined">
+                <mat-card-content>
+                  <mat-nav-list class="todos-nav-list">
+                    <h3 mat-subheader>Todoss</h3>
+                    @for (todos of this.filteredTodoss; track todos._id) {
+                      <a mat-list-item [routerLink]="['/todoss', todos._id]" class="todos-list-item">
+                        @if (this.todos.avatar) {
+                          <img matListItemAvatar [src]="todos.avatar" alt="Avatar for {{ todos.name }}">
+                        }
+                        <span matListItemTitle mat-line class="todos-list-name"> {{todos.name}} </span>
+                        <span matListItemLine class="todos-list-role"> {{todos.role}} </span>
+                      </a>
+                    }
+                  </mat-nav-list>
+                </mat-card-content>
+              </mat-card>
+            }
+          }
+        </div>
+      </div>
+    } @else {
+      <div class="flex-1" fxFlex.gt-sm="80" fxFlexOffset.gt-sm="10" class="todos-error">
+        <mat-error>
+          There was a problem loading the todoss. Possibly the server is down or perhaps there are network
+          issues.
+        </mat-error>
+        <mat-error>
+          Error message: {{ this.errMsg }}
+        </mat-error>
+        <mat-error>
+          Please wait a bit and try again or start the server.
+        </mat-error>
+      </div>
+    }
+
+    <!-- Maybe this should be a pop-up instead of just a text message? Not sure. -->
+
+  </div>
