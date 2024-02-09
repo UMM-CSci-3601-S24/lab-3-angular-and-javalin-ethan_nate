@@ -1,7 +1,8 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { HomeComponent } from './home/home.component';
-import { TodosComponent } from './todo/todos.component';
+import { TodosListComponent } from './todo/todos-list.component';
+import { TodosProfileComponent } from './todo/todos-profile.component';
 import { UserListComponent } from './users/user-list.component';
 import { UserProfileComponent } from './users/user-profile.component';
 
@@ -10,7 +11,8 @@ const routes: Routes = [
   {path: '', component: HomeComponent, title: 'Home'},
   {path: 'users', component: UserListComponent, title: 'Users'},
   {path: 'users/:id', component: UserProfileComponent, title: 'User Profile'},
-  {path: 'todos', component: TodosComponent, title: 'Todos'}
+  {path: 'todoss', component: TodosListComponent, title: 'Todoss'},
+  {path: 'todoss/:id', component: TodosProfileComponent, title: 'Todos Profile'},
 ];
 
 @NgModule({

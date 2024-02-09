@@ -14,6 +14,11 @@ import { UserCardComponent } from './user-card.component';
     standalone: true,
     imports: [NgIf, UserCardComponent, MatCardModule]
 })
+
+
+
+
+
 export class UserProfileComponent implements OnInit, OnDestroy {
 
   user: User;
