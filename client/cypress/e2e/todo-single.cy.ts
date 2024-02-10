@@ -15,7 +15,16 @@ describe('display a single todo by ID', () => {
     "body": "Ullamco irure laborum magna dolor non. Anim occaecat adipisicing cillum eu magna in.",
     "category": "homework"
   },
+
+    {
+    "_id": "58895985186754887e0381f5",
+    "owner": "Blanche",
+    "status": true,
+    "body": "Incididunt enim ea sit qui esse magna eu. Nisi sunt exercitation est Lorem consectetur incididunt cupidatat laboris commodo veniam do ut sint.",
+    "category": "software design"
+  },
   */
+
 
   /// <reference types="cypress" />
 
@@ -26,5 +35,10 @@ describe('display a single todo by ID', () => {
   it('Should have the correct URL', () => {
     page.getTodoOwner().should('have.text', 'Fry');
   });
+
+  it('Should display the correct for antoher ID todo', () => {
+    page.navigateToById('58895985186754887e0381f5');
+    page.getTodoOwner().should('have.text', 'Blanche');
+  })
 
 });

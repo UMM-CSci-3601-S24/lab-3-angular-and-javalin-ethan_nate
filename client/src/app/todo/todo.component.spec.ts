@@ -11,7 +11,7 @@ describe('TodoComponent', () => {
       imports: [TodoComponent]
     })
     .compileComponents();
-    
+
     fixture = TestBed.createComponent(TodoComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
