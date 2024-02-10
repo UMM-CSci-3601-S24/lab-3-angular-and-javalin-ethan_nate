@@ -1,10 +1,11 @@
 import { Component, OnDestroy } from '@angular/core';
-import { MatCard, MatCardHeader, MatCardSubtitle } from '@angular/material/card';
+import { MatCard, MatCardHeader, MatCardSubtitle, MatCardAvatar, MatCardTitle, MatCardContent, MatCardActions} from '@angular/material/card';
 import { ActivatedRoute, ParamMap } from '@angular/router';
 import { Subject, map, switchMap, takeUntil } from 'rxjs';
 import { Todo } from './todo';
 import { OnInit } from '@angular/core';
 import { TodoService } from '../todo.service';
+
 
 @Component({
   selector: 'app-todo',
