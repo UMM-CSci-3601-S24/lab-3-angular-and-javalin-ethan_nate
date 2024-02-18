@@ -1,23 +1,22 @@
 @if (this.todo) {
   <mat-card appearance="outlined" class="todo-card">
     <mat-card-header>
-      @if (this.todo.owner) {
-      <img mat-card-id [src]="this.todo.owner" alt="Avatar for {{this.todo.owner}}" class="todo-id">
-      }
-      <mat-card-title class="todo-card-owner">{{ this.todo.owner }}</mat-card-title>
-      <mat-card-subtitle class="todo-card-status">{{ this.todo.status }}</mat-card-subtitle>
+      <mat-card-title class="todo-card-owner">{{ todo.owner }}</mat-card-title>
+      <mat-card-subtitle class="todo-card-status">{{ todo.status ? 'Complete' : 'Incomplete' }}</mat-card-subtitle>
     </mat-card-header>
     @if (!this.simple) {
     <mat-card-content>
-      <p>category: <span class="todo-card-category">{{ this.todo.category }}</span></p>
-
-      <p>body: <span class="todo-card-body">{{ this.todo.body }}</span></p>
+      <p>category: <span class="todo-card-category">{{ todo.category }}</span></p>
+      <p>body: <span class="todo-card-body">{{ todo.body }}</span></p>
     </mat-card-content>
     }
     @if (this.simple) {
     <mat-card-actions>
-      <button mat-button data-test="viewProfileButton" [routerLink]="['/todos', this.todo.owner]">View Profile</button>
+      <button mat-button data-test="viewProfileButton" [routerLink]="['/todos', this.todo._id]">View Profile</button>
     </mat-card-actions>
     }
   </mat-card>
   }
+
+
+

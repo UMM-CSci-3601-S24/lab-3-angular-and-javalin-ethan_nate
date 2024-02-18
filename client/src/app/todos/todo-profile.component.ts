@@ -47,11 +47,11 @@ export class TodoProfileComponent implements OnInit, OnDestroy {
     // until `this.ngUnsubscribe` emits a value, saying to shut the pipeline
     this.route.paramMap.pipe(
       // Map the paramMap into the id
-      map((paramMap: ParamMap) => paramMap.get('owner')),
+      map((paramMap: ParamMap) => paramMap.get('id')),
       // Maps the `id` string into the Observable<Todo>,
       // which will emit zero or one values depending on whether there is a
       // `Todo` with that ID.
-      switchMap((owner: string) => this.todoService.getTodoById(owner)),
+      switchMap((id: string) => this.todoService.getTodoById(id)),
       // Allow the pipeline to continue to emit values until `this.ngUnsubscribe`
       // returns a value, which only happens when this component is destroyed.
       // At that point we shut down the pipeline, allowed any

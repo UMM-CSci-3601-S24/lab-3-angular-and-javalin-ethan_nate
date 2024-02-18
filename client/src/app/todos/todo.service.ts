@@ -66,11 +66,11 @@ export class TodoService {
   /**
    * Get the `Todo` with the specified ID.
    *
-   * @param owner the ID of the desired todo
+   * @param id the ID of the desired todo
    * @returns an `Observable` containing the resulting todo.
    */
-  getTodoById(owner: string): Observable<Todo> {
-    return this.httpClient.get<Todo>(this.todoUrl + '/' + owner);
+  getTodoById(id: string): Observable<Todo> {
+    return this.httpClient.get<Todo>(this.todoUrl + '/' + id);
   }
 
   /**
