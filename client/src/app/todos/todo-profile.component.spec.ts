@@ -1,4 +1,4 @@
-/*import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { MatCardModule } from '@angular/material/card';
 import { ActivatedRoute } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
@@ -8,15 +8,15 @@ import { MockTodoService } from '../../testing/todo.service.mock';
 import { Todo } from './todo';
 import { TodoCardComponent } from './todo-card.component';
 import { TodoProfileComponent } from './todo-profile.component';
-import { TodoService } from './todo.service';*/
-/*
+import { TodoService } from './todo.service';
+
 describe('TodoProfileComponent', () => {
   let component: TodoProfileComponent;
   let fixture: ComponentFixture<TodoProfileComponent>;
   const mockTodoService = new MockTodoService();
   const chrisId = 'chris_id';
   const activatedRoute: ActivatedRouteStub = new ActivatedRouteStub({
-   owner: chrisId
+   id: chrisId
   });
 
   beforeEach(waitForAsync(() => {
@@ -49,7 +49,7 @@ describe('TodoProfileComponent', () => {
     // Setting this should cause anyone subscribing to the paramMap
     // to update. Our `TodoProfileComponent` subscribes to that, so
     // it should update right away.
-    activatedRoute.setParamMap({owner: expectedTodo._id });
+    activatedRoute.setParamMap({id: expectedTodo._id });
     expect(component.todo).toEqual(expectedTodo);
   });
 
@@ -58,20 +58,20 @@ describe('TodoProfileComponent', () => {
     // Setting this should cause anyone subscribing to the paramMap
     // to update. Our `TodoProfileComponent` subscribes to that, so
     // it should update right away.
-    activatedRoute.setParamMap({owner: expectedTodo._id });
+    activatedRoute.setParamMap({id: expectedTodo._id });
     expect(component.todo).toEqual(expectedTodo);
 
     expect(component.todo).toEqual(expectedTodo);
 
     // Changing the paramMap should update the displayed todo profile.
     expectedTodo = MockTodoService.testTodos[1];
-    activatedRoute.setParamMap({owner: expectedTodo._id });
+    activatedRoute.setParamMap({id: expectedTodo._id });
 
     expect(component.todo).toEqual(expectedTodo);
   });
 
   it('should have `null` for the todo for a badOWNER', () => {
-    activatedRoute.setParamMap({owner: 'badID' });
+    activatedRoute.setParamMap({id: 'badID' });
 
     // If the givenOWNER doesn't map to a todo, we expect the service
     // to return `null`, so we would expect the component's todo
@@ -80,7 +80,7 @@ describe('TodoProfileComponent', () => {
   });
 
   it('should set error data on observable error', () => {
-    activatedRoute.setParamMap({owner: chrisId });
+    activatedRoute.setParamMap({id: chrisId });
 
     const mockError = { message: 'Test Error', error: { title: 'Error Title' } };
 
@@ -104,4 +104,4 @@ describe('TodoProfileComponent', () => {
     expect(getTodoSpy).toHaveBeenCalledWith(chrisId);
   });
 });
-*/
+

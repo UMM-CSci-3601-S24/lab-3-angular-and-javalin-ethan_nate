@@ -1,4 +1,4 @@
-/*import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { FormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
@@ -15,12 +15,12 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterTestingModule } from '@angular/router/testing';
 import { Observable } from 'rxjs';
-//import { MockTodoService } from '../../testing/todo.service.mock';
+import { MockTodoService } from '../../testing/todo.service.mock';
 import { Todo } from './todo';
 import { TodoCardComponent } from './todo-card.component';
 import { TodoListComponent } from './todo-list.component';
 import { TodoService } from './todo.service';
-/*
+
 const COMMON_IMPORTS: unknown[] = [
   FormsModule,
   MatCardModule,
@@ -59,54 +59,53 @@ describe('TodoListComponent', () => {
     providers: [{ provide: TodoService, useValue: new MockTodoService() }]
 });
   });
-/*
+
   // This constructs the `todoList` (declared
   // above) that will be used throughout the tests.
   beforeEach(waitForAsync(() => {
     // Compile all the components in the test bed
     // so that everything's ready to go.
     TestBed.compileComponents().then(() => {
+
+      fixture = TestBed.createComponent(TodoListComponent);
+      todoList = fixture.componentInstance;
       /* Create a fixture of the TodoListComponent. That
       * allows us to get an instance of the component
       * (todoList, below) that we can control in
       * the tests.
-      
+
       fixture = TestBed.createComponent(TodoListComponent);
       todoList = fixture.componentInstance;
-      /* Tells Angular to sync the data bindings between
+       Tells Angular to sync the data bindings between
       * the model and the DOM. This ensures, e.g., that the
       * `todoList` component actually requests the list
       * of todos from the `MockTodoService` so that it's
       * up to date before we start running tests on it.
-
+      *
+*/
       fixture.detectChanges();
     });
   }));
-
-  /*
 
   it('contains all the todos', () => {
     expect(todoList.serverFilteredTodos.length).toBe(3);
   });
 
-  it('contains a todo ownerd "Chris"', () => {
+  it('contains a todo named "Chris"', () => {
     expect(todoList.serverFilteredTodos.some((todo: Todo) => todo.owner === 'Chris')).toBe(true);
   });
 
-  it('contains a todo ownerd "Jamie"', () => {
+  it('contains a todo named "Jamie"', () => {
     expect(todoList.serverFilteredTodos.some((todo: Todo) => todo.owner === 'Jamie')).toBe(true);
   });
 
-  it('doesn\'t contain a todo ownerd "Santa"', () => {
-    expect(todoList.serverFilteredTodos.some((todo: Todo) => todo.owner === 'Santa')).toBe(false);
+  it('doesn\'t contain a todo named "Slonch"', () => {
+    expect(todoList.serverFilteredTodos.some((todo: Todo) => todo.owner === 'Slonch')).toBe(false);
   });
 
-  it('has two todos that are 37 years old', () => {
-    expect(todoList.serverFilteredTodos.filter((todo: Todo) => todo.age === 37).length).toBe(2);
-  });
 });
 
-*/
+
 
 /*
  * This test is a little odd, but illustrates how we can use stubs
@@ -117,7 +116,7 @@ describe('TodoListComponent', () => {
  * So this doesn't really test anything meaningful in the context of our
  * code (I certainly wouldn't copy it), but it does illustrate some nice
  * testing tools. Hopefully it's useful as an example in that regard.
-
+*/
 describe('Misbehaving Todo List', () => {
   let todoList: TodoListComponent;
   let fixture: ComponentFixture<TodoListComponent>;
@@ -136,6 +135,7 @@ describe('Misbehaving Todo List', () => {
       getTodosFiltered: () => new Observable(observer => {
         observer.error('getTodosFiltered() Observer generates an error');
       })
+      
     };
 
     TestBed.configureTestingModule({
@@ -164,4 +164,3 @@ describe('Misbehaving Todo List', () => {
     expect(todoList.serverFilteredTodos).toBeUndefined();
   });
 });
-*/

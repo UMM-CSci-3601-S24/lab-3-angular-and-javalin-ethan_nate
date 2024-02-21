@@ -86,7 +86,7 @@ export class TodoService {
    * @param filters the map of key-value pairs used for the filtering
    * @returns an array of `Todos` matching the given filters
    */
-  filterTodos(todos: Todo[], filters: { owner?: string; category?: string }): Todo[] {
+  filterTodos(todos: Todo[], filters: { owner?: string; category?: string; body?: string}): Todo[] {
     let filteredTodos = todos;
 
     if (filters.owner) {

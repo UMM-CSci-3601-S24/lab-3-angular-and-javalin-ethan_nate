@@ -1,4 +1,4 @@
-/*import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 
 import { TodoCardComponent } from './todo-card.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -23,6 +23,7 @@ describe('TodoCardComponent', () => {
     fixture = TestBed.createComponent(TodoCardComponent);
     component = fixture.componentInstance;
     component.todo = {
+      _id: 'chris_id',
       owner: 'chris_id',
       status: true,
       category: 'UMM',
@@ -36,4 +37,3 @@ describe('TodoCardComponent', () => {
     expect(component).toBeTruthy();
   });
 });
-*/

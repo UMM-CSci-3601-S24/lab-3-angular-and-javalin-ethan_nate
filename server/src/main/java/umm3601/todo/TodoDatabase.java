@@ -69,12 +69,13 @@ public class TodoDatabase {
 
     // Filter status if defined
     if (queryParams.containsKey("status")) {
-      String targetStatus = queryParams.get("status").get(0);
+      String statusParam = queryParams.get("status").get(0);
+      boolean targetStatus = "complete".equals(statusParam.toLowerCase());
       filteredTodos = filterTodosByStatus(filteredTodos, targetStatus);
     }
     // Filter body if defined
-    if (queryParams.containsKey("contains")) {
-      String targetBody = queryParams.get("contains").get(0);
+    if (queryParams.containsKey("body")) {
+      String targetBody = queryParams.get("body").get(0);
       filteredTodos = filterTodosByBody(filteredTodos, targetBody);
     }
     // Filter owner if defined
@@ -93,7 +94,7 @@ public class TodoDatabase {
       filteredTodos = sortTodos(filteredTodos, targetOrder);
     }
     // Filter todos within specific limit if defined
-    if (queryParams.containsKey("limit")) {
+ /*   if (queryParams.containsKey("limit")) {
       String limitParam = queryParams.get("limit").get(0);
       try {
         int targetLimit = Integer.parseInt(limitParam);
@@ -101,7 +102,7 @@ public class TodoDatabase {
       } catch (NumberFormatException e) {
         throw new BadRequestResponse("Specified limit '" + limitParam + "' can't be parsed to an integer");
       }
-    }
+    }*/
 
     return filteredTodos;
   }
@@ -114,16 +115,9 @@ public class TodoDatabase {
    * @return an array of all the todos from the given list that have the target
    *         status
    */
-  public Todo[] filterTodosByStatus(Todo[] todos, String targetStatus) {
-    switch (targetStatus.toLowerCase()) {
-      case "complete":
-        return Arrays.stream(todos).filter(x -> x.status).toArray(Todo[]::new);
-      case "incomplete":
-        return Arrays.stream(todos).filter(x -> !x.status).toArray(Todo[]::new);
-      default:
-        throw new BadRequestResponse("Specified status '" + targetStatus + "' is not a valid todo status");
-    }
-  }
+  public Todo[] filterTodosByStatus(Todo[] todos, boolean targetStatus) {
+    return Arrays.stream(todos).filter(x -> x.status == targetStatus).toArray(Todo[]::new);
+}
 
   /**
    * Get an array of all the todos having the target body.
@@ -134,10 +128,7 @@ public class TodoDatabase {
    *         body
    */
   public Todo[] filterTodosByBody(Todo[] todos, String targetBody) {
-    return Arrays
-        .stream(todos)
-        .filter(todo -> todo.body.toLowerCase().contains(targetBody.toLowerCase()))
-        .toArray(Todo[]::new);
+    return Arrays.stream(todos).filter(x -> x.body.contains(targetBody)).toArray(Todo[]::new);
   }
 
   /**
@@ -199,7 +190,8 @@ public class TodoDatabase {
    * @param targetLimit  the target limit of todo to return
    * @return an array of all the todos from the given list within the target limit
    */
-  public Todo[] filterTodosByLimit(Todo[] todos, int targetLimit) {
-    return Arrays.copyOfRange(Arrays.stream(todos).toArray(Todo[]::new), 0, targetLimit);
-  }
+
+
+
+
 }
