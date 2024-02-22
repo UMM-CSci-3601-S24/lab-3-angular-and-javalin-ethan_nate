@@ -7,14 +7,14 @@ describe('display a single todo by ID', () => {
   beforeEach(() => {
     page.navigateToById('58895985ae3b752b124e7663');
   });
-
-  /*  {
-    "_id": "58895985ae3b752b124e7663",
-    "owner": "Fry",
-    "status": true,
-    "body": "Ullamco irure laborum magna dolor non. Anim occaecat adipisicing cillum eu magna in.",
-    "category": "homework"
-  },
+  [
+  {
+      "_id": "58895985ae3b752b124e7663",
+      "owner": "Fry",
+      "status": true,
+      "body": "Ullamco irure laborum magna dolor non. Anim occaecat adipisicing cillum eu magna in.",
+      "category": "homework"
+    },
 
     {
     "_id": "58895985186754887e0381f5",
@@ -22,8 +22,8 @@ describe('display a single todo by ID', () => {
     "status": true,
     "body": "Incididunt enim ea sit qui esse magna eu. Nisi sunt exercitation est Lorem consectetur incididunt cupidatat laboris commodo veniam do ut sint.",
     "category": "software design"
-  },
-  */
+  }
+];
 
 
   /// <reference types="cypress" />

@@ -28,4 +28,5 @@
     "githubPullRequests.ignoredPullRequestBranches": [
       "main"
     ],
+    "java.debug.settings.onBuildFailureProceed": true,
 }
