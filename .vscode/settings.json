@@ -25,4 +25,8 @@
       "todos"
     ],
     "angular.enable-experimental-ivy-prompt": false,
+    "githubPullRequests.ignoredPullRequestBranches": [
+      "main"
+    ],
+    "java.debug.settings.onBuildFailureProceed": true,
 }
