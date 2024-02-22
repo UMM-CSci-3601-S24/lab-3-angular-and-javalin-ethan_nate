@@ -95,11 +95,11 @@ export class TodoListComponent implements OnInit, OnDestroy {
    * Called when the filtering information is changed in the GUI so we can
    * get an updated list of `filteredTodos`.
    */
-  public updateFilter() {
+  public updateFilter(): void {
     this.filteredTodos = this.todoService.filterTodos(
-      this.serverFilteredTodos, { owner: this.todoOwner, category: this.todoCategory }
-    );
+      this.serverFilteredTodos, {owner: this.todoOwner, status: this.todoStatus, category: this.todoCategory, body: this.todoBody,});
   }
+
 
   /**
    * Starts an asynchronous operation to update the todos list

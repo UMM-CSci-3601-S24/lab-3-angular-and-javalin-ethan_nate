@@ -16,5 +16,5 @@ export class TodoCardComponent {
 
   @Input() todo: Todo;
   @Input() simple ? = false;
-  component: { owner: string; status: true; category: string; body: string; avatar: string; };
+  component: { owner: string; status: boolean; category: string; body: string; avatar: string; };
 }
